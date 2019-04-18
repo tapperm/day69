@@ -1,1 +1,115 @@
-Hello World
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>day69</title>
+    <style>
+        .odd{
+  background: green;
+  border-style:solid;
+}
+
+.even{
+  background:pink;
+  border-style:solid;
+}
+
+input{
+/*   display:none; */
+/*   visibility:hidden; */
+}
+
+.correct {
+        background-color: #00DD00;
+    }
+    
+    .incorrect {
+        background-color: red;
+    }
+
+    </style>
+</head>
+
+<body>
+    <h3>SAAS Incoming 9th grader Math Skill Inventory</h3>
+    <h4>Level 1: Pre Algebra</h4>
+    <div class="odd">
+        Evaluate: \(5-3(x-1)\) when x = 7
+        <input type="text" data-answer="-13">;
+    </div>
+    <div class="even">
+        Evaluate: \(4x^2 - 5x + 1\) when x = -2
+        <input type="text" data-answer="27">
+    </div>
+    <div class="odd">
+        \((\sqrt(2)*sqrt(3))^2\)
+    </div>
+    <div id="theQuestions">
+    </div>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.0/jquery.min.js'></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML'></script>
+    <script id="rendered-js">
+    console.clear();
+
+    $('input').change(checkAnswer);
+
+    function checkAnswer(e) {
+        console.log();
+    }
+
+    function makeQ(q, a, level) {
+        let question = {}
+        question.q = q;
+        question.a = a;
+        question.level = level;
+        return question;
+    }
+
+    let questions = [];
+    questions.push(makeQ("2^3", "8", 1));
+    questions.push(makeQ("\\sqrt{16}", "4", 1));
+    console.log(questions);
+
+
+    function makeTest(e) {
+        for (let i = 0; i < questions.length; i++) {
+            console.log(questions[i]);
+            theQuestion = '<div class="odd">';
+            theQuestion += '\\(';
+            theQuestion += questions[i].q;
+            theQuestion += '\\)';
+            theQuestion += '<input data-answer="';
+            theQuestion += questions[i].a;
+            theQuestion += '">'
+            theQuestion += '</div>';
+            $('#theQuestions').append(theQuestion);
+        }
+        MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
+
+    }
+
+    makeTest();
+
+    $("input").change(checkAnswer);
+
+    function checkAnswer(e) {
+        correct = $(this).data("answer");
+        response = $(this).val();
+        console.log(correct, response);
+        numInputs = $("input").length;
+
+        if (correct == response) {
+            $(this).removeClass("incorrect").addClass("correct");
+            var numCorrect = $("#numCorrect").text();
+            $("#numCorrect").text(numCorrect * 1 + 1);
+        } else {
+            $(this).removeClass("correct").addClass("incorrect");
+        }
+        console.log('checkAnswer', correct, response);
+    }
+    </script>
+</body>
+
+</html>
