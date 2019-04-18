@@ -8,15 +8,18 @@
     <title>day69</title>
     <style>
         .odd{
-  background: green;
+  background: #99FFCC;
   border-style:solid;
   height:40px;
   width: 50%;
 }
 
 .even{
-  background:pink;
+  background: #99FFCC;
   border-style:solid;
+  height:40px;
+  width: 50%;
+
 }
 
 input{
@@ -29,7 +32,7 @@ input{
     }
     
     .incorrect {
-        background-color: red;
+        background-color: #DD0000;
     }
 
     </style>
@@ -75,6 +78,9 @@ input{
     questions.push(makeQ("2^3", "8", 1));
     questions.push(makeQ("\\dfrac{1}{2}", ".5", 1));
     questions.push(makeQ("\\sqrt{16}", "4", 1));
+    questions.push(makeQ("y(y-11)", "y^2(-11y)", 1));
+    questions.push(makeQ("(\\sqrt{2}*\\sqrt{3})^2", "6", 1));
+
     //console.log(questions);
 
 
